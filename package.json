@@ -1,0 +1,38 @@
+{
+  "name": "boilerplate-nodejs-flow-hot-reloading",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-plugin-transform-flow-strip-types": "^6.18.0",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-flowtype": "^2.30.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0",
+    "flow-bin": "^0.36.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "graphql": "^0.9.1",
+    "graphql-server-koa": "^0.6.0",
+    "graphql-tools": "^0.10.0",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-router": "^7.0.0"
+  }
+}
