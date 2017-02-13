@@ -4,12 +4,16 @@ import Koa from 'koa';
 import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
 
-import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
+import mongodb from './services/mongodb';
 
+import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
 import schema from './schema';
 
 const app = new Koa();
 const router = new Router();
+
+// Connect to MongoDB
+mongodb('mongodb://localhost/apki');
 
 const options = {
   graphql: {
