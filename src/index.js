@@ -36,6 +36,9 @@ router
   .get('/graphql', graphqlKoa(options.graphql))
   .get('/graphiql', graphiqlKoa(options.graphiql));
 
-app.use(bodyParser()).use(router.routes()).use(router.allowedMethods());
+app
+  .use(bodyParser())
+  .use(router.routes())
+  .use(router.allowedMethods());
 
 app.listen(9778, () => console.log('Server started on localhost:9778'));
