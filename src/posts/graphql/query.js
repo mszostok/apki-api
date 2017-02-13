@@ -1,6 +1,8 @@
+// @flow
+
 import Post from './type';
 
-import { getAllPosts } from '../services';
+import { allPosts } from '../resolvers';
 
 const text = `
   # Collection of *posts*. 
@@ -12,7 +14,7 @@ const text = `
 `;
 
 const resolvers = {
-  allPosts: (_, { limit }) => getAllPosts({ limit }),
+  allPosts,
 };
 
 const typeDefs = () => [Post];

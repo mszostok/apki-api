@@ -1,3 +1,11 @@
+import Post from './model';
+
+async function test(){
+  const posts = await Post.find();
+  console.log(posts);
+}
+test();
+
 const posts = [
   {
     id: 0,

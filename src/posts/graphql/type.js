@@ -1,9 +1,9 @@
 const Post = `
   type Post {
-    id: Int!
+    id: String!
     title: String!
-    author: String,
-    content: String
+    author: String!
+    content: String!
   }
 `;
 

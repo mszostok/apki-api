@@ -2,6 +2,9 @@
 
 import mongoose from 'mongoose';
 
+// Use native promises
+mongoose.Promise = global.Promise;
+
 function mongodb(host: string) {
   mongoose.connect(host);
 
