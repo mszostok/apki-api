@@ -14,5 +14,7 @@ winston.level = process.env.LOG_LEVEL || 'info';
  */
 const TRANSPORT_FILE_OPTIONS = {
   filename: `${Date.now()}.log`,
+  handleExceptions: true,
+  humanReadableUnhandledException: true,
 };
 process.env.LOG_FILE && winston.add(winston.transports.File, TRANSPORT_FILE_OPTIONS);
