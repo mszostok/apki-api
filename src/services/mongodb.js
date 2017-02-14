@@ -1,12 +1,14 @@
 // @flow
 
+import log from 'winston';
+
 import mongoose from 'mongoose';
 
 // Use native promises
 mongoose.Promise = global.Promise;
 
 function handleConnectionError(err) {
-  console.log('database error: ', err);
+  log.error('with database connection: ', err);
   process.exit(1);
 }
 

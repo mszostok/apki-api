@@ -1,5 +1,7 @@
 // @flow
 
+import log from 'winston';
+
 import Koa from 'koa';
 import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
@@ -9,6 +11,7 @@ import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
 import schema from './schema';
 
 import mongodb from './services/mongodb';
+import './services/logger';
 
 const app = new Koa();
 const router = new Router();
@@ -18,7 +21,7 @@ async function run() {
   try {
     await mongodb('mongodb://localhost/apki');
   } catch (err) {
-    console.log('while connecting to database: ', err);
+    log.error('while connecting to database: ', err);
     process.exit(1);
   }
 
@@ -53,7 +56,7 @@ async function run() {
     .use(router.routes())
     .use(router.allowedMethods());
 
-  app.listen(9778, () => console.log('Server started on localhost:9778'));
+  app.listen(9778, () => log.info('server started on localhost:9778'));
 }
 
 run();
