@@ -3,6 +3,7 @@
 import Koa from 'koa';
 import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
+import cors from 'kcors';
 
 import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
 import schema from './schema';
@@ -47,6 +48,7 @@ async function run() {
     .get('/graphiql', graphiqlKoa(options.graphiql));
 
   app
+    .use(cors())
     .use(bodyParser())
     .use(router.routes())
     .use(router.allowedMethods());
