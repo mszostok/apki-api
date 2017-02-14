@@ -12,37 +12,50 @@ import schema from './schema';
 const app = new Koa();
 const router = new Router();
 
-// Connect to MongoDB
-mongodb('mongodb://localhost/apki');
-
-const options = {
-  graphql: {
-    schema,
-  },
-  graphiql: {
-    endpointURL: '/graphql',
-    query: (
-`query allPosts($limit: Int) {
-  allPosts(limit: $limit) {
-    id
-    author
+async function run() {
+  // Connect to MongoDB
+  try {
+    const db = await mongodb('mongodb://localhost/apki');
+    db.on('error', (err) => {
+      console.log('database error: ', err);
+      process.exit(1);
+    });
+  } catch (err) {
+    console.log('while connecting to database: ', err);
+    process.exit(1);
   }
-}`
-    ),
-    variables: {
-      limit: 2,
+
+  const options = {
+    graphql: {
+      schema,
     },
-  },
-};
+    graphiql: {
+      endpointURL: '/graphql',
+      query: (
+  `query allPosts($limit: Int) {
+    allPosts(limit: $limit) {
+      id
+      author
+    }
+  }`
+      ),
+      variables: {
+        limit: 2,
+      },
+    },
+  };
 
-router
-  .post('/graphql', graphqlKoa(options.graphql))
-  .get('/graphql', graphqlKoa(options.graphql))
-  .get('/graphiql', graphiqlKoa(options.graphiql));
+  router
+    .post('/graphql', graphqlKoa(options.graphql))
+    .get('/graphql', graphqlKoa(options.graphql))
+    .get('/graphiql', graphiqlKoa(options.graphiql));
 
-app
-  .use(bodyParser())
-  .use(router.routes())
-  .use(router.allowedMethods());
+  app
+    .use(bodyParser())
+    .use(router.routes())
+    .use(router.allowedMethods());
 
-app.listen(9778, () => console.log('Server started on localhost:9778'));
+  app.listen(9778, () => console.log('Server started on localhost:9778'));
+}
+
+run();

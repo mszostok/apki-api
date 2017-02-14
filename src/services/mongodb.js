@@ -6,13 +6,11 @@ import mongoose from 'mongoose';
 mongoose.Promise = global.Promise;
 
 function mongodb(host: string) {
-  mongoose.connect(host);
-
-  const db = mongoose.connection;
-
-  db.on('error', err => console.log('MongoDB connection error:', err));
-
-  return db;
+  return new Promise((resolve, reject) => {
+    mongoose.connect(host)
+      .then(() => resolve(mongoose.connection))
+      .catch(reject);
+  });
 }
 
 export default mongodb;
