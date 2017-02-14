@@ -15,11 +15,7 @@ const router = new Router();
 async function run() {
   // Connection MongoDB
   try {
-    const db = await mongodb('mongodb://localhost/apki');
-    db.on('error', (err) => {
-      console.log('database error: ', err);
-      process.exit(1);
-    });
+    await mongodb('mongodb://localhost/apki');
   } catch (err) {
     console.log('while connecting to database: ', err);
     process.exit(1);
