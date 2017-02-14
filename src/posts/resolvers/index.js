@@ -1,0 +1,1 @@
+export allPosts from './allPosts';
