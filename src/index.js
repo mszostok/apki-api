@@ -4,16 +4,16 @@ import Koa from 'koa';
 import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
 
-import mongodb from './services/mongodb';
-
 import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
 import schema from './schema';
+
+import mongodb from './services/mongodb';
 
 const app = new Koa();
 const router = new Router();
 
 async function run() {
-  // Connect to MongoDB
+  // Connection MongoDB
   try {
     const db = await mongodb('mongodb://localhost/apki');
     db.on('error', (err) => {
