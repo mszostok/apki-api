@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "./scripts/set_envs.sh && node .",
     "dev": "nodemon"
   },
   "keywords": [],
