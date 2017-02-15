@@ -42,7 +42,7 @@ describe('TestValidateNotSetField', () => {
     it('should throw error when given object contains undefined or null fields', () => {
       // given
       const testCases = [
-        // Undefined field set on first level
+        // Undefined field on first level
         {
           expectErrMsg: 'Field "stringField" was not set',
           testObj: {
@@ -54,7 +54,7 @@ describe('TestValidateNotSetField', () => {
           },
         },
 
-        // Null field set on first level
+        // Null field on first level
         {
           expectErrMsg: 'Field "numberField" was not set',
           testObj: {
@@ -66,7 +66,7 @@ describe('TestValidateNotSetField', () => {
           },
         },
 
-        // Undefined field set on embedded object
+        // Undefined field on embedded object
         {
           expectErrMsg: 'Field "second" was not set',
           testObj: {

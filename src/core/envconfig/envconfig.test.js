@@ -62,7 +62,7 @@ describe('TestInitWithOptions', () => {
   });
 
   describe('Failure', () => {
-    it('should throw error when field was not inited', () => {
+    it('should throw error when field was not initialized', () => {
       // given
       const cfgStructure = {
         host: undefined,

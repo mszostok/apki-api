@@ -6,6 +6,10 @@ function ValidatorError(message?: string) {
 }
 ValidatorError.prototype = Object.create(Error.prototype);
 
+// BE CAREFUL when using this method, because it will check given
+// object by recursive calling for each nested field, so for example
+// when object will have a pointer to it self set as field, then
+// it will looped on checking it and then stack overflow exception will occur.
 function validateNotSetField(cfg: any) {
   if (!cfg) {
     throw new ValidatorError('Given object is undefined');

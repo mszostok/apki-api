@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./scripts/set_envs.sh && node .",
+    "start": "./scripts/start.sh",
     "dev": "nodemon",
     "test": "jest",
     "test-cover": "jest --coverage"
