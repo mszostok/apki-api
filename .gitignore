@@ -1,3 +1,7 @@
+# Custom for IntelliJ
+.idea/
+*.iml
+
 node_modules
 .vscode
 npm-debug.log
