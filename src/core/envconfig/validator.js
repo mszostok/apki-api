@@ -6,34 +6,24 @@ function ValidatorError(message?: string) {
 }
 ValidatorError.prototype = Object.create(Error.prototype);
 
-const defaultInvalidTypeof: string = 'undefined';
-
-class NotSetFieldValidator {
-  x: string = defaultInvalidTypeof;
-
-  constructor(x?: string) {
-    if (x) this.x = x;
+function validateNotSetField(cfg: any) {
+  if (!cfg) {
+    throw new ValidatorError('Given object is undefined');
   }
-
-  validate(cfg: any) {
-    if (!cfg) {
-      return;
-    }
-    Object.keys(cfg).forEach((property) => {
-      if (Object.prototype.hasOwnProperty.call(cfg, property)) {
-        if (typeof cfg[property] === 'object') {
-          this.validate(cfg[property]);
-        }
-
-        if (typeof cfg[property] === this.x) {
-          throw new ValidatorError(`Field "${property}" was not set`);
-        }
+  Object.keys(cfg).forEach((property) => {
+    if (Object.prototype.hasOwnProperty.call(cfg, property)) {
+      if (cfg[property] && typeof cfg[property] === 'object') {
+        validateNotSetField(cfg[property]);
       }
-    });
-  }
+
+      if (cfg[property] == null || typeof cfg[property] === 'undefined') {
+        throw new ValidatorError(`Field "${property}" was not set`);
+      }
+    }
+  });
 }
 
 export {
-    NotSetFieldValidator,
+    validateNotSetField,
     ValidatorError,
 };

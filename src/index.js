@@ -21,7 +21,7 @@ const router = new Router();
 
 async function run() {
   try {
-    const cfg = envconfig.InitWithOptions(configStructure, { prefix: 'APKI' });
+    const cfg = envconfig.initWithOptions(configStructure, { prefix: 'APKI' });
 
     await mongodb.connect(cfg.mongodb);
 

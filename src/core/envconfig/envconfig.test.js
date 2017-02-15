@@ -1,4 +1,4 @@
-import { InitWithOptions } from './envconfig';
+import { initWithOptions } from './envconfig';
 
 describe('TestInitWithOptions', () => {
   describe('Success', () => {
@@ -22,7 +22,7 @@ describe('TestInitWithOptions', () => {
       };
 
       // when
-      const initedCfg = InitWithOptions(cfgStructure, { prefix: 'app' });
+      const initedCfg = initWithOptions(cfgStructure, { prefix: 'app' });
 
       // then
       expect(initedCfg).toMatchObject(expectedInitCfg);
@@ -38,7 +38,7 @@ describe('TestInitWithOptions', () => {
       };
 
       // when
-      const initedCfg = InitWithOptions(cfgStructure, { prefix: 'app' });
+      const initedCfg = initWithOptions(cfgStructure, { prefix: 'app' });
 
       // then
       expect(initedCfg).toMatchObject(expectedInitCfg);
@@ -54,7 +54,7 @@ describe('TestInitWithOptions', () => {
       };
 
       // when
-      const initedCfg = InitWithOptions(cfgStructure, { prefix: 'app', allOptional: true });
+      const initedCfg = initWithOptions(cfgStructure, { prefix: 'app', allOptional: true });
 
       // then
       expect(initedCfg).toMatchObject(expectedInitCfg);
@@ -71,7 +71,7 @@ describe('TestInitWithOptions', () => {
       // when
       let gotErr;
       try {
-        InitWithOptions(cfgStructure, { prefix: 'app' });
+        initWithOptions(cfgStructure, { prefix: 'app' });
       } catch (err) {
         gotErr = err;
       }
