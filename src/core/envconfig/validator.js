@@ -8,7 +8,7 @@ ValidatorError.prototype = Object.create(Error.prototype);
 
 const defaultInvalidTypeof: string = 'undefined';
 
-class CfgValidator {
+class NotSetFieldValidator {
   x: string = defaultInvalidTypeof;
 
   constructor(x?: string) {
@@ -34,6 +34,6 @@ class CfgValidator {
 }
 
 export {
-    CfgValidator,
+    NotSetFieldValidator,
     ValidatorError,
 };

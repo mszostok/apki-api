@@ -2,7 +2,7 @@
 
 import nodeenvconfiguration from 'node-env-configuration';
 import type { Options } from './typedefs';
-import { CfgValidator } from './validator';
+import { NotSetFieldValidator } from './validator';
 
 
 function InitWithOptions(defaults: any, opts: Options = {}) {
@@ -12,8 +12,8 @@ function InitWithOptions(defaults: any, opts: Options = {}) {
   });
 
   if (!opts.allOptional) {
-    const cfgValidator = new CfgValidator();
-    cfgValidator.validate(cfg);
+    const validator = new NotSetFieldValidator(opts.invalidFinalTypeof);
+    validator.validate(cfg);
   }
 
   return cfg;
