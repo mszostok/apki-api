@@ -8,59 +8,57 @@ import cors from 'kcors';
 import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
 import schema from './schema';
 
-import * as mongodb from './services/mongodb';
+import * as mongodb from './core/mongodb';
 
-import * as envconfig from './core/envconfig/envconfig';
+import envconfig from './core/envconfig';
 
 const configStructure = {
   app: { port: 9778 },
-  mongodb: new mongodb.Config(),
+  mongodb: mongodb.config,
 };
 const app = new Koa();
 const router = new Router();
 
-async function run() {
+(async function run() {
+  const cfg = envconfig.init(configStructure, { prefix: 'APKI' });
+
   try {
-    const cfg = envconfig.initWithOptions(configStructure, { prefix: 'APKI' });
-
     await mongodb.connect(cfg.mongodb);
+  } catch (err) {
+    console.log('while connecting to database: ', err);
+    process.exit(1);
+  }
 
-    const options = {
-      graphql: {
-        schema,
-      },
-      graphiql: {
-        endpointURL: '/graphql',
-        query: (
-                    `query allPosts($limit: Int) {
+  const options = {
+    graphql: {
+      schema,
+    },
+    graphiql: {
+      endpointURL: '/graphql',
+      query: (
+        `query allPosts($limit: Int) {
           allPosts(limit: $limit) {
             id
             author
           }
         }`
-                ),
-        variables: {
-          limit: 2,
-        },
+      ),
+      variables: {
+        limit: 2,
       },
-    };
+    },
+  };
 
-    router
-            .post('/graphql', graphqlKoa(options.graphql))
-            .get('/graphql', graphqlKoa(options.graphql))
-            .get('/graphiql', graphiqlKoa(options.graphiql));
+  router
+    .post('/graphql', graphqlKoa(options.graphql))
+    .get('/graphql', graphqlKoa(options.graphql))
+    .get('/graphiql', graphiqlKoa(options.graphiql));
 
-    app
-            .use(cors())
-            .use(bodyParser())
-            .use(router.routes())
-            .use(router.allowedMethods());
+  app
+    .use(cors())
+    .use(bodyParser())
+    .use(router.routes())
+    .use(router.allowedMethods());
 
-    app.listen(cfg.app.port, () => console.log(`Server started on localhost:${cfg.app.port}`));
-  } catch (err) {
-    console.log('while running app: ', err);
-    process.exit(1);
-  }
-}
-
-run();
+  app.listen(cfg.app.port, () => console.log(`Server started on localhost:${cfg.app.port}`));
+}());

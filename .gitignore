@@ -5,6 +5,9 @@
 # Folder created by jest --coverage cmd
 coverage
 
+# Protection for committing .env file with sensitive environment variables
+.env
+
 node_modules
 .vscode
 npm-debug.log

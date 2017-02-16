@@ -1,4 +1,4 @@
-import { initWithOptions } from './envconfig';
+import envconfig from './envconfig';
 
 describe('TestInitWithOptions', () => {
   describe('Success', () => {
@@ -22,7 +22,7 @@ describe('TestInitWithOptions', () => {
       };
 
       // when
-      const initedCfg = initWithOptions(cfgStructure, { prefix: 'app' });
+      const initedCfg = envconfig.init(cfgStructure, { prefix: 'app' });
 
       // then
       expect(initedCfg).toMatchObject(expectedInitCfg);
@@ -38,46 +38,10 @@ describe('TestInitWithOptions', () => {
       };
 
       // when
-      const initedCfg = initWithOptions(cfgStructure, { prefix: 'app' });
+      const initedCfg = envconfig.init(cfgStructure, { prefix: 'app' });
 
       // then
       expect(initedCfg).toMatchObject(expectedInitCfg);
-    });
-
-    it('should not throw error when field is not set and allOptional is enabled', () => {
-      // given
-      const cfgStructure = {
-        notSetField: undefined,
-      };
-      const expectedInitCfg = {
-        notSetField: undefined,
-      };
-
-      // when
-      const initedCfg = initWithOptions(cfgStructure, { prefix: 'app', allOptional: true });
-
-      // then
-      expect(initedCfg).toMatchObject(expectedInitCfg);
-    });
-  });
-
-  describe('Failure', () => {
-    it('should throw error when field was not initialized', () => {
-      // given
-      const cfgStructure = {
-        host: undefined,
-      };
-
-      // when
-      let gotErr;
-      try {
-        initWithOptions(cfgStructure, { prefix: 'app' });
-      } catch (err) {
-        gotErr = err;
-      }
-
-      // then
-      expect(gotErr.message).toBe('Field "host" was not set');
     });
   });
 });

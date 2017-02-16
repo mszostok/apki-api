@@ -1,2 +1,2 @@
 export connect from './mongodb';
-export Config from './config';
+export config from './config';

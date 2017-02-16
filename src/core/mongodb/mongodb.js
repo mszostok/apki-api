@@ -1,7 +1,7 @@
 // @flow
 
 import mongoose from 'mongoose';
-import Config from './config';
+import { Config } from './config';
 
 // Use native promises
 mongoose.Promise = global.Promise;
@@ -13,10 +13,10 @@ function handleConnectionError(err) {
 
 function connect(cfg: Config) {
   return new Promise((resolve, reject) => {
-    mongoose.connect(`mongodb://${cfg.host}:${cfg.port}/${cfg.dbname}`, {
+    mongoose.connect(`mongodb://${cfg.host}:${cfg.port}/${cfg.dbName}`, {
       user: cfg.user,
       password: cfg.password,
-      server: { poolSize: cfg.poolsize },
+      server: { poolSize: cfg.poolSize },
     }).then(() => {
       mongoose.connection.on('error', handleConnectionError);
       resolve();

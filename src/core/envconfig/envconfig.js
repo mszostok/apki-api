@@ -1,27 +1,17 @@
 // @flow
 
-import nodeenvconfiguration from 'node-env-configuration';
+import envConfiguration from 'node-env-configuration';
 import type { Options } from './typedefs';
-import * as validator from './validator';
 
 /**
- * initWithOptions returns given defaults object initialized with environment variables.
- *
- * @throws {ValidatorError} when allOptional is false and after initialization
- * object with environment variables the object still contains
- * fields which are undefined or null.
+ * init returns given defaults object initialized with environment variables.
  */
-function initWithOptions(defaults: any, opts: Options): any {
-  const cfg = nodeenvconfiguration({
+function init(defaults: any, opts: Options): any {
+  return envConfiguration({
     defaults,
     prefix: opts.prefix,
+    addAdditionalFields: false,
   });
-
-  if (!opts.allOptional) {
-    validator.validateNotSetField(cfg);
-  }
-
-  return cfg;
 }
 
-export { initWithOptions };
+export default { init };

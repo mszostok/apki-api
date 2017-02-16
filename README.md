@@ -62,9 +62,9 @@ mongo apki < scripts/mongo.js
 Name  | Default Value | Description
 ------|---------------|-------------
 `APKI_APP_PORT` | 9778 | Port under which application will be available.
-`APKI_MONGODB_DBNAME` | 'apki' | Mongo database name which will be used to persist all data manipulated by apki-org micro-service.
+`APKI_MONGODB_DB_NAME` | 'apki' | Mongo database name which will be used to persist all data manipulated by apki-org micro-service.
 `APKI_MONGODB_HOST` | 127.0.0.1 | Mongo server host
 `APKI_MONGODB_PORT` | 27017 | Mongo server port
 `APKI_MONGODB_USER` | '' | Mongo username for authentication, if not specified than no authentication will be used.
 `APKI_MONGODB_PASSWORD` | '' | Mongo password for authentication, if not specified than no authentication will be used.
-`APKI_MONGODB_POOLSIZE` | 5 | Number of connections in the connection pool for each server instance
+`APKI_MONGODB_POOL_SIZE` | 5 | Number of connections in the connection pool for each server instance

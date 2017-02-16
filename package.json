@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./scripts/start.sh",
+    "start": "node -r dotenv/config .",
     "dev": "nodemon",
     "test": "jest",
     "test-cover": "jest --coverage"
@@ -31,6 +31,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "dotenv": "^4.0.0",
     "graphql": "^0.9.1",
     "graphql-server-koa": "^0.6.0",
     "graphql-tools": "^0.10.0",
@@ -39,6 +40,6 @@
     "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.0.0",
     "mongoose": "^4.8.2",
-    "node-env-configuration": "^1.0.3"
+    "node-env-configuration": "git+https://github.com/mszostok/node-env-configuration.git"
   }
 }
