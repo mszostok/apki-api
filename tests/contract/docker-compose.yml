@@ -1,0 +1,16 @@
+api:
+  build: ../../
+  ports:
+    - "9778:9778"
+  links:
+    - mongo
+
+mongo-seed:
+  build: ../images/mongo-seed/
+  links:
+   - mongo
+
+mongo:
+  image: mongo
+  ports:
+    - "27017:27017"
