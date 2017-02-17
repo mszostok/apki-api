@@ -1,4 +1,17 @@
-exports[`Query allPosts no variables 1`] = `
+exports[`Queries allPosts with limit 1`] = `
+Object {
+  "allPosts": Array [
+    Object {
+      "id": "58a6277dd6c104e3c8eac610",
+    },
+    Object {
+      "id": "58a6277dd6c104e3c8eac611",
+    },
+  ],
+}
+`;
+
+exports[`Queries allPosts without params 1`] = `
 Object {
   "allPosts": Array [
     Object {
@@ -24,25 +37,6 @@ Object {
       "content": "In vitae congue quam. Aenean vel porttitor neque. Etiam non neque vel elit luctus euismod eget non dui. In venenatis arcu dictum elit tristique dictum. Fusce vel mauris vel lorem facilisis egestas. Sed nec interdum orci.",
       "id": "58a6277dd6c104e3c8eac613",
       "title": "Proin suscipit non quam",
-    },
-  ],
-}
-`;
-
-exports[`Query allPosts with variables limit 1`] = `
-Object {
-  "allPosts": Array [
-    Object {
-      "author": "Mietek",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla quis ipsum ut hendrerit. Etiam rutrum elementum urna, et fringilla lacus dapibus sed.",
-      "id": "58a6277dd6c104e3c8eac610",
-      "title": "Lorem ipsum",
-    },
-    Object {
-      "author": "Andrzej",
-      "content": "Aliquam eu mollis felis. Maecenas quis pulvinar neque. Donec arcu ex, ultrices sit amet nunc ac, interdum dapibus nunc.",
-      "id": "58a6277dd6c104e3c8eac611",
-      "title": "Maecenas mattis",
     },
   ],
 }

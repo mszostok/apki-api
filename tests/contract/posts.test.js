@@ -5,35 +5,40 @@ const client = new Lokka({
   transport: new Transport('http://localhost:9778/graphql'),
 });
 
-describe('Query', () => {
+describe('Queries', () => {
+
   describe('allPosts', () => {
-    it('no variables', async () => {
-      const result = await client.query(`
+
+    // given
+    const queries = {
+      'without params': `
         {
           allPosts {
             id
-            author
             title
+            author
             content
           }
         }
-      `);
-      expect(result).toMatchSnapshot();
-    });
-    describe('with variables', () => {
-      it('limit', async () => {
-        const result = await client.query(`
-          {
-            allPosts(limit: 2) {
-              id
-              author
-              title
-              content
-            }
+      `,
+      'with limit': `
+        {
+          allPosts(limit: 2) {
+            id
           }
-        `);
+        }
+      `,
+    };
+
+    Object.entries(queries).map(async ([name, query]) => {
+      it(name, async () => {
+        // when
+        const result = await client.query(query);
+        // then
         expect(result).toMatchSnapshot();
       });
     });
+
   });
+
 });
