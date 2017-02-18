@@ -8,15 +8,22 @@ import cors from 'kcors';
 import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
 import schema from './schema';
 
-import mongodb from './services/mongodb';
+import * as mongodb from './core/mongodb';
 
+import envconfig from './core/envconfig';
+
+const configStructure = {
+  app: { port: 9778 },
+  mongodb: mongodb.config,
+};
 const app = new Koa();
 const router = new Router();
 
-async function run() {
-  // Connection MongoDB
+(async function run() {
+  const cfg = envconfig.init(configStructure, { prefix: 'APKI' });
+
   try {
-    await mongodb('mongodb://mongo/apki');
+    await mongodb.connect(cfg.mongodb);
   } catch (err) {
     console.log('while connecting to database: ', err);
     process.exit(1);
@@ -29,12 +36,12 @@ async function run() {
     graphiql: {
       endpointURL: '/graphql',
       query: (
-  `query allPosts($limit: Int) {
-    allPosts(limit: $limit) {
-      id
-      author
-    }
-  }`
+        `query allPosts($limit: Int) {
+          allPosts(limit: $limit) {
+            id
+            author
+          }
+        }`
       ),
       variables: {
         limit: 2,
@@ -53,7 +60,5 @@ async function run() {
     .use(router.routes())
     .use(router.allowedMethods());
 
-  app.listen(9778, () => console.log('Server started on localhost:9778'));
-}
-
-run();
+  app.listen(cfg.app.port, () => console.log(`Server started on localhost:${cfg.app.port}`));
+}());

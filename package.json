@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "node -r dotenv/config .",
     "dev": "nodemon",
+    "test": "npm run test:unit && npm run test:contract",
+    "test-cover": "jest --coverage",
+    "test:unit": "jest",
     "test:contract": "cd tests/contract && ./run.sh & cd ../..",
     "test:contract:update": "cd tests/contract && ./run.sh -u & cd ../.."
   },
@@ -27,9 +30,11 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
     "flow-bin": "^0.36.0",
+    "jest": "^18.1.0",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "dotenv": "^4.0.0",
     "graphql": "^0.9.1",
     "graphql-server-koa": "^0.6.0",
     "graphql-tools": "^0.10.0",
@@ -37,6 +42,13 @@
     "koa": "^2.0.0",
     "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.0.0",
-    "mongoose": "^4.8.2"
+    "mongoose": "^4.8.2",
+    "node-env-configuration": "git+https://github.com/mszostok/node-env-configuration.git"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/tests/contract" 
+    ]
   }
 }
