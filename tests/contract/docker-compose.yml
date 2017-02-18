@@ -1,16 +1,20 @@
+tester:
+  build: .
+  command: "sh test.sh ${TEST_ARGS}"
+  volumes:
+    - ./__snapshots__/:/contract/__snapshots__/
+  links:
+    - api
+
 api:
-  build: ../../
-  ports:
-    - "9778:9778"
+  build: ../..
   links:
     - mongo
 
 mongo-seed:
-  build: ../images/mongo-seed/
+  build: ../images/mongo-seed
   links:
-   - mongo
+    - mongo
 
 mongo:
-  image: mongo
-  ports:
-    - "27017:27017"
+  image: mongo:3.4.2

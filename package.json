@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test:contract": "cd tests/contract && ./run.sh & cd ../..",
+    "test:contract:update": "cd tests/contract && ./run.sh -u & cd ../.."
   },
   "keywords": [],
   "author": "",

@@ -1,7 +1,13 @@
-FROM risingstack/alpine:3.4-v7.4.0-4.2.1
+FROM mhart/alpine-node:7.5.0
 
-COPY package.json package.json
+RUN mkdir -p /app
+WORKDIR  /app
+
+COPY package.json /app/
 RUN npm install --dev
+
+COPY . /app/
+
 EXPOSE 9778
-COPY . .
+
 CMD [ "npm", "start" ]

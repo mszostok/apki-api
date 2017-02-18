@@ -1,8 +1,10 @@
 const Lokka = require('lokka').Lokka;
 const Transport = require('lokka-transport-http').Transport;
 
+const API_URI = 'http://api:9778/graphql';
+
 const client = new Lokka({
-  transport: new Transport('http://localhost:9778/graphql'),
+  transport: new Transport(API_URI),
 });
 
 describe('Queries', () => {
@@ -14,7 +16,6 @@ describe('Queries', () => {
       'without params': `
         {
           allPosts {
-            id
             title
             author
             content
@@ -24,7 +25,9 @@ describe('Queries', () => {
       'with limit': `
         {
           allPosts(limit: 2) {
-            id
+            title
+            author
+            content
           }
         }
       `,
