@@ -20,3 +20,4 @@ mongo-seed:
 
 mongo:
   image: mongo:3.4.2
+  
