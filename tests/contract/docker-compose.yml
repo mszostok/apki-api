@@ -8,6 +8,8 @@ tester:
 
 api:
   build: ../..
+  environment: 
+    - APKI_MONGODB_HOST="mongo"
   links:
     - mongo
 
