@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "dotenv": "^4.0.0",
+    "envconfig-alpha": "^1.0.4",
     "graphql": "^0.9.1",
     "graphql-server-koa": "^0.6.0",
     "graphql-tools": "^0.10.0",
@@ -40,6 +41,5 @@
     "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.0.0",
     "mongoose": "^4.8.2",
-    "node-env-configuration": "git+https://github.com/mszostok/node-env-configuration.git"
   }
 }
