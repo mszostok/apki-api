@@ -39,7 +39,7 @@
     "koa": "^2.0.0",
     "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.0.0",
-    "mongoose": "^4.8.2",
+    "mongoose": "^5.7.5",
     "node-env-configuration": "git+https://github.com/mszostok/node-env-configuration.git"
   }
 }
